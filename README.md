@@ -28,7 +28,7 @@ Create a detailed web app that solves for the following:
 - Look and feel of the application (after all this is a GUI)
 - quality (unit or functional tests are extra credit)
 
-A sample [data set](./src/homes.json) representing properties has been included to help get you started on what an API call would likely return for the list of active properties. Due to limited timeframe for the assignment it is fine to mock out API calls, however, your application should still dispatch events as though it was making API calls to a service and handle/store data as though it was received from an API call.
+A sample [data set](server/homes.json) representing properties has been included to help get you started on what an API call would likely return for the list of active properties. Due to limited timeframe for the assignment it is fine to mock out API calls, however, your application should still dispatch events as though it was making API calls to a service and handle/store data as though it was received from an API call.
 
 As each solution is reviewed there will be an emphasis on the use of ReactJS best practices, design patterns, use of standard packages, use of ES6.
 
