@@ -12,7 +12,7 @@ function PropertyCard ({ data }) {
                     <small className="pending-tag-c">Pending</small>}
 
                     <div className="img-box-a">
-                        <img src={property.primaryImageUrl} alt="Property picture" className="img-a img-fluid"/>
+                        <img src={property.primaryImageUrl} alt="Property view" className="img-a img-fluid"/>
                     </div>
                     <div className="card-overlay">
                         <div className="card-overlay-a-content">

@@ -11,7 +11,7 @@ function ShareButtons ({ text, pageUrl }) {
             {/* Facebook */}
             <a className="resp-sharing-button__link"
                href={`https://facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`}
-               target="_blank" rel="noopener" aria-label="Facebook">
+               target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                 <div
                     className="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--medium">
                     <div aria-hidden="true" className="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -26,7 +26,7 @@ function ShareButtons ({ text, pageUrl }) {
             {/* Twitter */}
             <a className="resp-sharing-button__link"
                href={`https://twitter.com/intent/tweet/?text=${encodeURIComponent(text)}&url=${encodeURIComponent(pageUrl)}`}
-               target="_blank" rel="noopener" aria-label="Twitter">
+               target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                 <div
                     className="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--medium">
                     <div aria-hidden="true" className="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -42,7 +42,7 @@ function ShareButtons ({ text, pageUrl }) {
             {isMobile &&
             <a className="resp-sharing-button__link"
                href={`whatsapp://send?text=${encodeURIComponent(text)}%20${encodeURIComponent(pageUrl)}`}
-               target="_blank" rel="noopener" aria-label="WhatsApp">
+               target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
                 <div
                     className="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--medium">
                     <div aria-hidden="true" className="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -57,7 +57,7 @@ function ShareButtons ({ text, pageUrl }) {
             {/* E-Mail */}
             <a className="resp-sharing-button__link"
                href={`mailto:?subject=${encodeURIComponent(text)}&body=${encodeURIComponent(pageUrl)}`}
-               target="_self" rel="noopener" aria-label="E-Mail">
+               target="_self" rel="noopener noreferrer" aria-label="E-Mail">
                 <div className="resp-sharing-button resp-sharing-button--email resp-sharing-button--medium">
                     <div aria-hidden="true" className="resp-sharing-button__icon resp-sharing-button__icon--solid">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

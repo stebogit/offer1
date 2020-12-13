@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import PropertyCard from './PropertyCard';
-import PropertiesFilters from './PropertiesFilters';
-import Loader from './Loader';
-import Header from './Header';
+import PropertyCard from '../PropertyCard';
+import PropertiesFilters from '../PropertiesFilters';
+import Loader from '../Loader';
+import Header from '../Header';
 
 function Properties ({ properties, loading, error }) {
     const [filteredProperties, setFilteredProperties] = useState(properties);
@@ -14,6 +14,7 @@ function Properties ({ properties, loading, error }) {
         maxPrice: Infinity,
     });
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => filterProprieties(), [filters, properties]);
 
     if (error) {

@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import './assets/vendor/bootstrap.min.css';
 import './assets/theme.css';
 import './assets/styles.css';
-import Page from './components/Page';
+import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Page />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

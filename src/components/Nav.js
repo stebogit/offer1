@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useAuth } from './Auth';
 
 function Nav () {
     const [menuOpen, setMenuOpen] = useState(false);
+    const auth = useAuth();
+
     return (
         <nav className="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
             <div className="container">
@@ -14,12 +17,11 @@ function Nav () {
                     <span/>
                     <span/>
                 </button>
-                <a className="navbar-brand text-brand" href="#">
+                <span className="navbar-brand text-brand">
                     O<span className="color-c">ffer</span><span className="color-b">1</span>
-                </a>
+                </span>
 
-                <div className={`navbar-collapse collapse justify-content-end ${menuOpen && 'show'}`}
-                     id="navbarDefault">
+                <div className={`navbar-collapse collapse justify-content-end ${menuOpen && 'show'}`}>
                     <ul className="navbar-nav">
                         <li className="nav-item">
                             <NavLink to="/properties" className="nav-link" activeClassName="active">
@@ -27,7 +29,12 @@ function Nav () {
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/home" className="nav-link" activeClassName="active">Home</NavLink>
+                            <NavLink
+                                className="nav-link" activeClassName="active"
+                                to={auth.user ? '/account' : '/login'}
+                            >
+                                {auth.user ? 'Account' : 'Login'}
+                            </NavLink>
                         </li>
                     </ul>
                 </div>

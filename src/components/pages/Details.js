@@ -1,9 +1,9 @@
 import { Link, useParams } from 'react-router-dom';
-import ShareButtons from './ShareButtons';
-import Loader from './Loader';
-import Header from './Header';
+import ShareButtons from '../ShareButtons';
+import Loader from '../Loader';
+import Header from '../Header';
 import PropTypes from 'prop-types';
-import { capitalize, fromCamelCase, numFormatter } from '../utils';
+import { capitalize, fromCamelCase, numFormatter } from '../../utils';
 
 function Details ({ properties, loading, error }) {
     const { propertyId } = useParams();
