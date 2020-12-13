@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
 function PropertiesSelect ({ options, value, label, defaultValue, name, onChange }) {
@@ -20,7 +19,13 @@ function PropertiesSelect ({ options, value, label, defaultValue, name, onChange
     );
 }
 
-PropertiesSelect.propTypes = {};
-PropertiesSelect.defaultProps = {};
+PropertiesSelect.propTypes = {
+    options: PropTypes.array.isRequired,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    label: PropTypes.node.isRequired,
+    name: PropTypes.string.isRequired,
+    defaultValue: PropTypes.object.isRequired,
+    onChange: PropTypes.func.isRequired,
+};
 
 export default PropertiesSelect;

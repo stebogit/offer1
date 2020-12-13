@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { numFormatter } from '../utils';
 import { Link } from 'react-router-dom';
@@ -10,7 +9,7 @@ function PropertyCard ({ data }) {
             <Link to={`/properties/${property.id}`} className="link-a">
                 <div className="card-box-a card-shadow">
                     {state.toLowerCase() === 'pending' &&
-                        <small className="pending-tag-c">Pending</small>}
+                    <small className="pending-tag-c">Pending</small>}
 
                     <div className="img-box-a">
                         <img src={property.primaryImageUrl} alt="Property picture" className="img-a img-fluid"/>
@@ -53,7 +52,8 @@ function PropertyCard ({ data }) {
     );
 }
 
-PropertyCard.propTypes = {};
-PropertyCard.defaultProps = {};
+PropertyCard.propTypes = {
+    data: PropTypes.object.isRequired,
+};
 
 export default PropertyCard;

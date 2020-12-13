@@ -1,5 +1,3 @@
-import React from 'react';
-
 const containerStyle = {
     textAlign: 'center',
     width: '100%',

@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Properties from './Properties';
 import Details from './Details';
 import Nav from './Nav';
 import Footer from './Footer';
+import Header from './Header';
 
 import propertiesPayload from '../homes.json';
 
@@ -15,18 +16,16 @@ function Page () {
     useEffect(() => {
         // TODO: get data from server
         setTimeout(() => {
-            setProperties(propertiesPayload)
-            setLoading(false)
+            setProperties(propertiesPayload);
+            setLoading(false);
         }, 200);
-    },[]);
+    }, []);
 
     const props = { properties, loading, error };
 
-    // TODO: handle server error
-
     return (
         <Router>
-            <Nav />
+            <Nav/>
             <main id="main">
                 <Switch>
                     <Route exact path="/properties">
@@ -36,9 +35,16 @@ function Page () {
                         <Details {...props} />
                     </Route>
                     {/* TODO: add sign-in */}
+
+                    <Route path="*">
+                        <Header
+                            title="Not found" error
+                            subtitle="Sorry, we can't find the page you were looking for."
+                        />
+                    </Route>
                 </Switch>
             </main>
-            <Footer />
+            <Footer/>
         </Router>
     );
 }

@@ -22,7 +22,9 @@ function Nav () {
                      id="navbarDefault">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <NavLink to="/properties" className="nav-link" activeClassName="active" >Properties</NavLink>
+                            <NavLink to="/properties" className="nav-link" activeClassName="active">
+                                Properties
+                            </NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink to="/home" className="nav-link" activeClassName="active">Home</NavLink>

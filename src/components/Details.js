@@ -1,12 +1,18 @@
-import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import ShareButtons from './ShareButtons';
 import Loader from './Loader';
+import Header from './Header';
 import PropTypes from 'prop-types';
-import { numFormatter, capitalize, fromCamelCase } from '../utils';
+import { capitalize, fromCamelCase, numFormatter } from '../utils';
 
-function Details ({ properties, loading }) {
+function Details ({ properties, loading, error }) {
     const { propertyId } = useParams();
+
+    if (error) {
+        return (
+            <Header error title="Oops!..." subtitle="Sorry, something went wrong on our end."/>
+        );
+    }
 
     if (loading) {
         return (
@@ -19,43 +25,21 @@ function Details ({ properties, loading }) {
     const details = properties.find(p => p.id === Number(propertyId)) ?? {};
     const { property, price, includedItems, state, listingAgent } = details;
 
+    const backLink = <Link to="/properties"> &lt; All properties</Link>;
+
     return (
         <>
-            <section className="intro-single">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-12 col-lg-8">
-                            {property
-                                ? <div className="title-single-box">
-                                    <h1 className="title-single">
-                                        {property.address.addressLine1} {property.address.addressLine2}
-                                    </h1>
-                                    <span className="color-text-a">
-                                        {property.address.city}, {property.address.state} {property.address.zip}
-                                    </span>
-                                </div>
-                                : <div className="title-single-box" style={{borderLeft: '1px solid #adadad'}}>
-                                    <h1 className="title-single color-d">
-                                        Listing not found
-                                    </h1>
-                                    <span className="color-text-a">
-                                        The property might no longer be available, please contact us and we{' '}
-                                        will be happy to help you.
-                                    </span>
-                                </div>}
-                        </div>
-                        <div className="col-md-12 col-lg-4">
-                            <nav aria-label="breadcrumb" className="breadcrumb-box d-flex justify-content-lg-end">
-                                <ol className="breadcrumb">
-                                    <li className="breadcrumb-item">
-                                        <Link to="/properties"> &lt;&lt; All properties</Link>
-                                    </li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            {property
+                ? <Header
+                    title={`${property.address.addressLine1} ${property.address.addressLine2}`}
+                    subtitle={`${property.address.city}, ${property.address.state} ${property.address.zip}`}
+                    backLink={backLink}
+                />
+                : <Header
+                    error title="Listing not found"
+                    subtitle="The property might no longer be available, please contact us and we will be happy to help you."
+                    backLink={backLink}
+                />}
 
             {property &&
             <section className="property-single nav-arrow-b">
@@ -227,7 +211,10 @@ function Details ({ properties, loading }) {
     );
 }
 
-Details.propTypes = {};
-Details.defaultProps = {};
+Details.propTypes = {
+    properties: PropTypes.array.isRequired,
+    loading: PropTypes.bool.isRequired,
+    error: PropTypes.bool.isRequired,
+};
 
 export default Details;

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import PropertyCard from './PropertyCard';
 import PropertiesFilters from './PropertiesFilters';
 import Loader from './Loader';
+import Header from './Header';
 
 function Properties ({ properties, loading, error }) {
     const [filteredProperties, setFilteredProperties] = useState(properties);
@@ -15,6 +16,10 @@ function Properties ({ properties, loading, error }) {
 
     useEffect(() => filterProprieties(), [filters, properties]);
 
+    if (error) {
+        return <Header error title="Error" subtitle="Sorry, an error occurred, please try again later"/>;
+    }
+
     const handleChange = (e) => {
         const v = e.target.value;
         const value = !v || isNaN(v) ? e.target.value : Number(v);
@@ -26,7 +31,7 @@ function Properties ({ properties, loading, error }) {
         const value = e.target.value !== ''
             ? Number(e.target.value)
             : name === 'maxPrice' ? Infinity : '';
-        setFilters({ ...filters, [name]: value});
+        setFilters({ ...filters, [name]: value });
     };
 
     const handleReset = () => setFilters({
@@ -52,18 +57,7 @@ function Properties ({ properties, loading, error }) {
 
     return (
         <>
-            <section className="intro-single">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-12 col-lg-8">
-                            <div className="title-single-box">
-                                <h1 className="title-single">Our Amazing Properties</h1>
-                                <span className="color-text-a">Chose the one right for you!</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <Header title="Our Amazing Properties" subtitle="Chose the one right for you!"/>
 
             <section className="property-grid grid">
                 <div className="container">
@@ -89,7 +83,10 @@ function Properties ({ properties, loading, error }) {
     );
 }
 
-Properties.propTypes = {};
-Properties.defaultProps = {};
+Properties.propTypes = {
+    properties: PropTypes.array.isRequired,
+    loading: PropTypes.bool.isRequired,
+    error: PropTypes.bool.isRequired,
+};
 
 export default Properties;

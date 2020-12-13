@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import PropertiesSelect from './PropertiesSelect';
 import PropertiesInput from './PropertiesInput';
@@ -57,7 +56,13 @@ function PropertiesFilters ({ filters, bedroomOptions, cityOptions, onChange, on
     );
 }
 
-PropertiesFilters.propTypes = {};
-PropertiesFilters.defaultProps = {};
+PropertiesFilters.propTypes = {
+    filters: PropTypes.object.isRequired,
+    bedroomOptions: PropTypes.array.isRequired,
+    cityOptions: PropTypes.array.isRequired,
+    onChange: PropTypes.func.isRequired,
+    onPriceChange: PropTypes.func.isRequired,
+    onReset: PropTypes.func.isRequired,
+};
 
 export default PropertiesFilters;

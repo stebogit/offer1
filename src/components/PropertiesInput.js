@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
 function PropertiesInput ({ placeholder, value, label, name, onChange }) {
@@ -25,7 +24,12 @@ function numbersOnly (e) {
     }
 }
 
-PropertiesInput.propTypes = {};
-PropertiesInput.defaultProps = {};
+PropertiesInput.propTypes = {
+    placeholder: PropTypes.string.isRequired,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    label: PropTypes.node.isRequired,
+    name: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+};
 
 export default PropertiesInput;
