@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 function Nav () {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -18,20 +18,14 @@ function Nav () {
                     O<span className="color-c">ffer</span><span className="color-b">1</span>
                 </a>
 
-                {/*<button className="btn btn-link nav-search navbar-toggle-box-collapse d-md-none"*/}
-                {/*        type="button" aria-expanded={menuOpen}*/}
-                {/*        onClick={() => setMenuOpen(!menuOpen)}*/}
-                {/*>*/}
-                {/*    <span className="fa fa-search" aria-hidden="true"></span>*/}
-                {/*</button>*/}
                 <div className={`navbar-collapse collapse justify-content-end ${menuOpen && 'show'}`}
                      id="navbarDefault">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <Link to="/properties" className="nav-link active">Properties</Link>
+                            <NavLink to="/properties" className="nav-link" activeClassName="active" >Properties</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link to="/details" className="nav-link active">Details</Link>
+                            <NavLink to="/home" className="nav-link" activeClassName="active">Home</NavLink>
                         </li>
                     </ul>
                 </div>

@@ -1,6 +1,66 @@
+#main {
+    min-height: calc(100vh - 250px);
+}
+
 .section-footer {
     padding-top: 30px;
 }
 .navbar-brand.text-brand:hover {
     color: initial;
+}
+
+.price-box {
+    position: relative;
+}
+
+.card-box-a {
+    min-height: 300px;
+    position: relative;
+}
+
+.card-body-a {
+    padding-bottom: 1rem;
+}
+
+.img-box-a {
+    text-align: center;
+}
+
+.img-box-a img {
+    width: 100%;
+}
+
+.card-box-a .pending-tag-c {
+    position: absolute;
+    padding: 5px 10px;
+    background-color: #1d6fb6;
+    color: #fff;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+}
+
+.intro-single {
+    padding: 9rem 0 1rem;
+}
+
+.property-grid .grid-option {
+    margin-bottom: 1rem;
+}
+
+.btn-reset:hover {
+    color: #92be1f;
+}
+
+.details-image {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.share-icons {
+    line-height: 1.15;
 }

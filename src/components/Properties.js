@@ -1,8 +1,55 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import PropertyCard from './PropertyCard';
+import PropertiesFilters from './PropertiesFilters';
+import Loader from './Loader';
 
-function Properties (props) {
+function Properties ({ properties, loading, error }) {
+    const [filteredProperties, setFilteredProperties] = useState(properties);
+    const [filters, setFilters] = useState({
+        city: '',
+        minBedrooms: 0,
+        minPrice: '',
+        maxPrice: Infinity,
+    });
+
+    useEffect(() => filterProprieties(), [filters, properties]);
+
+    const handleChange = (e) => {
+        const v = e.target.value;
+        const value = !v || isNaN(v) ? e.target.value : Number(v);
+        setFilters({ ...filters, [e.target.name]: value });
+    };
+
+    const handlePriceChange = (e) => {
+        const name = e.target.name;
+        const value = e.target.value !== ''
+            ? Number(e.target.value)
+            : name === 'maxPrice' ? Infinity : '';
+        setFilters({ ...filters, [name]: value});
+    };
+
+    const handleReset = () => setFilters({
+        city: '',
+        minBedrooms: 0,
+        minPrice: '',
+        maxPrice: Infinity,
+    });
+
+    const filterProprieties = () => {
+        // TODO: mark property as hidden instead
+        let filtered = properties;
+        if (filters.city !== '') filtered = filtered.filter(p => p.property.address.city === filters.city);
+        if (filters.minBedrooms > 0) filtered = filtered.filter(p => p.property.numberBedrooms > filters.minBedrooms);
+        if (filters.minPrice > 0) filtered = filtered.filter(p => p.price > filters.minPrice);
+        if (filters.maxPrice < Infinity) filtered = filtered.filter(p => p.price < filters.maxPrice);
+        setFilteredProperties(filtered);
+    };
+
+    const cityOptions = [...new Set(properties.map(({ property: { address: { city } } }) => city))] // filter unique
+        .map((c) => ({ value: c, text: c }));
+    const bedroomOptions = [2, 3, 4, 5, 6].map((c) => ({ value: c, text: `${c}+` }));
+
     return (
         <>
             <section className="intro-single">
@@ -11,20 +58,8 @@ function Properties (props) {
                         <div className="col-md-12 col-lg-8">
                             <div className="title-single-box">
                                 <h1 className="title-single">Our Amazing Properties</h1>
-                                <span className="color-text-a">Grid Properties</span>
+                                <span className="color-text-a">Chose the one right for you!</span>
                             </div>
-                        </div>
-                        <div className="col-md-12 col-lg-4">
-                            <nav aria-label="breadcrumb" className="breadcrumb-box d-flex justify-content-lg-end">
-                                <ol className="breadcrumb">
-                                    <li className="breadcrumb-item">
-                                        <a href="#">Home</a>
-                                    </li>
-                                    <li className="breadcrumb-item active" aria-current="page">
-                                        Properties Grid
-                                    </li>
-                                </ol>
-                            </nav>
                         </div>
                     </div>
                 </div>
@@ -34,113 +69,19 @@ function Properties (props) {
                 <div className="container">
                     <div className="row">
                         <div className="col-sm-12">
-                            <div className="grid-option">
-                                <form>
-                                    <select defaultValue="" className="custom-select">
-                                        <option value="">All</option>
-                                        <option value="1">New to Old</option>
-                                        <option value="2">For Rent</option>
-                                        <option value="3">For Sale</option>
-                                    </select>
-                                </form>
-                            </div>
+                            <PropertiesFilters
+                                filters={filters}
+                                cityOptions={cityOptions}
+                                bedroomOptions={bedroomOptions}
+                                onPriceChange={handlePriceChange}
+                                onReset={handleReset}
+                                onChange={handleChange}
+                            />
                         </div>
 
-                        <div className="col-md-4">
-                            <div className="card-box-a card-shadow">
-                                <div className="img-box-a">
-                                    <img src="./assets/img/property-1.jpg" alt="" className="img-a img-fluid"/>
-                                </div>
-                                <div className="card-overlay">
-                                    <div className="card-overlay-a-content">
-                                        <div className="card-header-a">
-                                            <h2 className="card-title-a">
-                                                <Link to="#">
-                                                    204 Mount<br/> Olive Road Two
-                                                </Link>
-                                            </h2>
-                                        </div>
-                                        <div className="card-body-a">
-                                            <div className="price-box d-flex">
-                                                <span className="price-a">rent | $ 12.000</span>
-                                            </div>
-                                            <Link to="property-single.html" className="link-a">
-                                                Click here to view
-                                                <span className="ion-ios-arrow-forward"/>
-                                            </Link>
-                                        </div>
-                                        <div className="card-footer-a">
-                                            <ul className="card-info d-flex justify-content-around">
-                                                <li>
-                                                    <h4 className="card-info-title">Area</h4>
-                                                    <span>340m<sup>2</sup></span>
-                                                </li>
-                                                <li>
-                                                    <h4 className="card-info-title">Beds</h4>
-                                                    <span>2</span>
-                                                </li>
-                                                <li>
-                                                    <h4 className="card-info-title">Baths</h4>
-                                                    <span>4</span>
-                                                </li>
-                                                <li>
-                                                    <h4 className="card-info-title">Garages</h4>
-                                                    <span>1</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-md-4">
-                            <div className="card-box-a card-shadow">
-                                <div className="img-box-a">
-                                    <img src="assets/img/property-3.jpg" alt="" className="img-a img-fluid"/>
-                                </div>
-                                <div className="card-overlay">
-                                    <div className="card-overlay-a-content">
-                                        <div className="card-header-a">
-                                            <h2 className="card-title-a">
-                                                <Link to="#">
-                                                    204 Mount<br/> Olive Road Two
-                                                </Link>
-                                            </h2>
-                                        </div>
-                                        <div className="card-body-a">
-                                            <div className="price-box d-flex">
-                                                <span className="price-a">rent | $ 12.000</span>
-                                            </div>
-                                            <Link to="property-single.html" className="link-a">
-                                                Click here to view
-                                                <span className="ion-ios-arrow-forward"/>
-                                            </Link>
-                                        </div>
-                                        <div className="card-footer-a">
-                                            <ul className="card-info d-flex justify-content-around">
-                                                <li>
-                                                    <h4 className="card-info-title">Area</h4>
-                                                    <span>340m<sup>2</sup></span>
-                                                </li>
-                                                <li>
-                                                    <h4 className="card-info-title">Beds</h4>
-                                                    <span>2</span>
-                                                </li>
-                                                <li>
-                                                    <h4 className="card-info-title">Baths</h4>
-                                                    <span>4</span>
-                                                </li>
-                                                <li>
-                                                    <h4 className="card-info-title">Garages</h4>
-                                                    <span>1</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {loading
+                            ? <Loader/>
+                            : filteredProperties.map((property, i) => <PropertyCard key={i} data={property}/>)}
                     </div>
                 </div>
             </section>

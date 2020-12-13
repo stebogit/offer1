@@ -600,18 +600,15 @@ a:hover {
 
 .btn.btn-c {
   background-color: #1d6fb6;
-  color: #000000;
+  color: #ffffff;
 }
 
 .btn.btn-c:hover {
   background-color: #000000;
-  color: #ffffff;
 }
 
 .btn.btn-c-n {
   background-color: #1d6fb6;
-  color: #ffffff;
-  border-radius: 0;
 }
 
 .btn.btn-b-n:hover {
@@ -1137,9 +1134,6 @@ a:hover {
 
 .intro-single .title-single-box {
   padding: 1rem 0 1rem 2rem;
-}
-
-.intro-single .title-single-box {
   border-left: 3px solid #92be1f;
 }
 
