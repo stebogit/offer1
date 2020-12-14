@@ -22,7 +22,7 @@ function App () {
         setTimeout(() => {
             setProperties(propertiesPayload);
             setLoading(false);
-        }, 200);
+        }, 2000);
     }, []);
 
     const props = { properties, loading, error };

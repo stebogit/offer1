@@ -4,6 +4,7 @@ import Loader from '../Loader';
 import Header from '../Header';
 import PropTypes from 'prop-types';
 import { capitalize, fromCamelCase, numFormatter } from '../../utils';
+import ContactFrom from '../ContactFrom';
 
 function Details ({ properties, loading, error }) {
     const { propertyId } = useParams();
@@ -171,36 +172,7 @@ function Details ({ properties, loading, error }) {
                                     <ShareButtons text="Check this out!" pageUrl={window.location.href}/>
                                 </div>
                                 <div className="col-md-6">
-                                    <div className="property-contact">
-                                        <form className="form-a">
-                                            <div className="row">
-                                                <div className="col-md-12 mb-1">
-                                                    <div className="form-group">
-                                                        <input type="text"
-                                                               className="form-control form-control-sm form-control-a"
-                                                               id="inputName" placeholder="Name *" required/>
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-12 mb-1">
-                                                    <div className="form-group">
-                                                        <input type="email"
-                                                               className="form-control form-control-sm form-control-a"
-                                                               id="inputEmail1" placeholder="Email *" required/>
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-12 mb-1">
-                                                    <div className="form-group">
-                                                        <textarea id="textMessage" className="form-control"
-                                                                  placeholder="Comment *" name="message"
-                                                                  rows="6" required/>
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-12">
-                                                    <button type="submit" className="btn btn-c">Send Message</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                                    <ContactFrom />
                                 </div>
                             </div>
                         </div>

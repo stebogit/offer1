@@ -8,6 +8,7 @@ function Signin () {
     const history = useHistory();
     const auth = useAuth();
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
     const [user, setUser] = useState({
         first: '',
         last: '',
@@ -20,10 +21,17 @@ function Signin () {
     const signin = (e) => {
         e.preventDefault();
         setError('');
+        setLoading(true);
         auth.signin(
             user,
-            () => history.replace('/properties'),
-            (message) => setError(message)
+            () => {
+                setLoading(false);
+                history.replace('/properties')
+            },
+            (message) => {
+                setLoading(false);
+                setError(message)
+            }
         );
     };
 
@@ -36,21 +44,21 @@ function Signin () {
                     <form onSubmit={signin}>
                         <div className="row">
                             <div className="col-md-6 mb-3">
-                                <FromInput type="text" name="first" placeholder="First Name" onChange={handleChange}/>
+                                <FromInput type="text" name="first" placeholder="First Name *" onChange={handleChange}/>
                             </div>
                             <div className="col-md-6 mb-3">
-                                <FromInput type="text" name="last" placeholder="Last Name" onChange={handleChange}/>
+                                <FromInput type="text" name="last" placeholder="Last Name *" onChange={handleChange}/>
                             </div>
                             <div className="col-md-6 mb-3">
-                                <FromInput type="email" name="email" placeholder="Email" onChange={handleChange}/>
+                                <FromInput type="email" name="email" placeholder="Email *" onChange={handleChange}/>
                             </div>
                             <div className="col-md-6 mb-3">
-                                <FromInput type="password" name="password" placeholder="Password" onChange={handleChange}/>
+                                <FromInput type="password" name="password" placeholder="Password *" onChange={handleChange}/>
                             </div>
 
                             <div className="col-md-12 text-center">
-                                <button type="submit" className="btn btn-c">
-                                    Sign in
+                                <button type="submit" className="btn btn-c" disabled={loading} style={{ width: 160 }}>
+                                    {loading ? <i className="fa fa-spinner fa-spin"/> : 'Sign in'}
                                 </button>
                             </div>
                         </div>

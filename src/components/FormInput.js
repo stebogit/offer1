@@ -5,7 +5,6 @@ function FormInput ({ placeholder, value, label, name, onChange, type = 'text', 
         <div className="form-group">
             {label && <label htmlFor={name}>{label}</label>}
             <input
-                id={name}
                 {...rest}
                 className="form-control form-control form-control-a"
                 name={name}

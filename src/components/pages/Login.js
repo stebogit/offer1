@@ -9,6 +9,7 @@ function Login () {
     const location = useLocation();
     const auth = useAuth();
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
     const [credentials, setCredentials] = useState({ email: '', password: '' });
 
     const handleChange = (e) => setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -17,10 +18,17 @@ function Login () {
     const login = (e) => {
         e.preventDefault();
         setError('');
+        setLoading(true);
         auth.login(
             credentials,
-            () => history.replace(from),
-            (message) => setError(message)
+            () => {
+                setLoading(false);
+                history.replace(from)
+            },
+            (message) => {
+                setLoading(false);
+                setError(message)
+            }
         );
     };
 
@@ -33,15 +41,15 @@ function Login () {
                     <form onSubmit={login}>
                         <div className="row">
                             <div className="col-md-6 mb-3">
-                                <FromInput type="email" name="email" placeholder="Email" onChange={handleChange}/>
+                                <FromInput type="email" name="email" placeholder="Email *" onChange={handleChange}/>
                             </div>
                             <div className="col-md-6 mb-3">
-                                <FromInput type="password" name="password" placeholder="Password" onChange={handleChange}/>
+                                <FromInput type="password" name="password" placeholder="Password *" onChange={handleChange}/>
                             </div>
 
                             <div className="col-md-12 text-center">
-                                <button type="submit" className="btn btn-c" >
-                                    Log in
+                                <button type="submit" className="btn btn-c" disabled={loading} style={{ width: 150 }}>
+                                    {loading ? <i className="fa fa-spinner fa-spin"/> : 'Log in'}
                                 </button>{' '}
                                 <Link to="/signin" className="btn btn-b">
                                     Sign in
