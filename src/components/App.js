@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Properties from './pages/Properties';
-import Details from './pages/Details';
+import PropertyList from './pages/PropertyList';
+import PropertyDetails from './pages/PropertyDetails';
 import Nav from './Nav';
 import Footer from './Footer';
 import Header from './Header';
@@ -34,10 +34,10 @@ function App () {
                 <main id="main">
                     <Switch>
                         <Route exact path="/properties">
-                            <Properties {...props} />
+                            <PropertyList {...props} />
                         </Route>
                         <Route path="/properties/:propertyId">
-                            <Details {...props} />
+                            <PropertyDetails {...props} />
                         </Route>
 
                         <Route path="/login">

@@ -5,7 +5,7 @@ import PropertiesFilters from '../PropertiesFilters';
 import Loader from '../Loader';
 import Header from '../Header';
 
-function Properties ({ properties, loading, error }) {
+function PropertyList ({ properties, loading, error }) {
     const [filteredProperties, setFilteredProperties] = useState(properties);
     const [filters, setFilters] = useState({
         city: '',
@@ -46,7 +46,7 @@ function Properties ({ properties, loading, error }) {
         // TODO: mark property as hidden instead
         let filtered = properties;
         if (filters.city !== '') filtered = filtered.filter(p => p.property.address.city === filters.city);
-        if (filters.minBedrooms > 0) filtered = filtered.filter(p => p.property.numberBedrooms > filters.minBedrooms);
+        if (filters.minBedrooms > 0) filtered = filtered.filter(p => p.property.numberBedrooms >= filters.minBedrooms);
         if (filters.minPrice > 0) filtered = filtered.filter(p => p.price > filters.minPrice);
         if (filters.maxPrice < Infinity) filtered = filtered.filter(p => p.price < filters.maxPrice);
         setFilteredProperties(filtered);
@@ -84,10 +84,10 @@ function Properties ({ properties, loading, error }) {
     );
 }
 
-Properties.propTypes = {
+PropertyList.propTypes = {
     properties: PropTypes.array.isRequired,
     loading: PropTypes.bool.isRequired,
     error: PropTypes.bool.isRequired,
 };
 
-export default Properties;
+export default PropertyList;

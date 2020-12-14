@@ -61,8 +61,28 @@
     background-size: cover;
 }
 
+@media (max-width: 1200px) {
+    .details-image {
+        height: 350px;
+    }
+}
+
+@media (max-width: 575px) {
+    .details-image {
+        height: 200px;
+    }
+
+    .card-box-ico {
+        padding: .5rem 2.5rem .5rem 2rem;
+    }
+}
+
 .share-icons {
     line-height: 1.15;
+}
+
+.resp-sharing-button__link:hover {
+    color: #fff;
 }
 
 form .error-message {

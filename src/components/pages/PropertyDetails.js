@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { capitalize, fromCamelCase, numFormatter } from '../../utils';
 import ContactFrom from '../ContactFrom';
 
-function Details ({ properties, loading, error }) {
+function PropertyDetails ({ properties, loading, error }) {
     const { propertyId } = useParams();
 
     if (error) {
@@ -183,10 +183,10 @@ function Details ({ properties, loading, error }) {
     );
 }
 
-Details.propTypes = {
+PropertyDetails.propTypes = {
     properties: PropTypes.array.isRequired,
     loading: PropTypes.bool.isRequired,
     error: PropTypes.bool.isRequired,
 };
 
-export default Details;
+export default PropertyDetails;
