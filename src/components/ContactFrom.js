@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from './Auth';
 import FromInput from './FormInput';
+import axios from 'axios';
 
 function ContactFrom () {
     const [error, setError] = useState(false);
@@ -15,15 +16,20 @@ function ContactFrom () {
 
     const handleChange = (e) => setMessage({ ...message, [e.target.name]: e.target.value });
 
-    const send = (e) => {
+    const send = async (e) => {
         e.preventDefault();
         setError(false);
         setResult(false);
         setLoading(true);
-        setTimeout(handleResult, 2000);
+        try {
+            await axios.post('/api/email', message);
+            handleSuccess();
+        } catch (e) {
+            handleError();
+        }
     };
 
-    const handleResult = () => {
+    const handleSuccess = () => {
         setLoading(false);
         setResult(true);
         setMessage({
@@ -31,6 +37,11 @@ function ContactFrom () {
             email: auth.user ? auth.user.email : '',
             body: '',
         });
+    }
+
+    const handleError = () => {
+        setLoading(false);
+        setError(true);
     }
 
     return (
@@ -65,8 +76,8 @@ function ContactFrom () {
 
                 <div className="col-md-12 mb-3">
                     <div className="mb-3">
-                        {error && <div className="error-message">Sorry an error occurred.</div>}
-                        {result && <div className="sent-message">Message sent!</div>}
+                        {error && <div className="error-message">Sorry an error occurred</div>}
+                        {result && <div className="sent-message">Message sent! We'll get back to you shortly</div>}
                     </div>
                 </div>
             </form>

@@ -11,7 +11,7 @@ function PropertyDetails ({ properties, loading, error }) {
 
     if (error) {
         return (
-            <Header error title="Oops!..." subtitle="Sorry, something went wrong on our end."/>
+            <Header hasError title="Oops!..." subtitle="Sorry, something went wrong on our end."/>
         );
     }
 
@@ -32,12 +32,12 @@ function PropertyDetails ({ properties, loading, error }) {
         <>
             {property
                 ? <Header
-                    title={`${property.address.addressLine1} ${property.address.addressLine2}`}
+                    title={property.address.addressLine1}
                     subtitle={`${property.address.city}, ${property.address.state} ${property.address.zip}`}
                     backLink={backLink}
                 />
                 : <Header
-                    error title="Listing not found"
+                    hasError title="Listing not found"
                     subtitle="The property might no longer be available, please contact us and we will be happy to help you."
                     backLink={backLink}
                 />}
@@ -50,7 +50,7 @@ function PropertyDetails ({ properties, loading, error }) {
                             <div className="owl-carousel owl-arrow gallery-property">
                                 <div className="details-image"
                                      style={{ backgroundImage: `url(${property.primaryImageUrl})` }}
-                                     title="Property picture"
+                                     title="Property view"
                                 />
                             </div>
                             <div className="row justify-content-between">

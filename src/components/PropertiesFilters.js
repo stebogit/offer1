@@ -40,7 +40,7 @@ function PropertiesFilters ({ filters, bedroomOptions, cityOptions, onChange, on
                     <div className="col-md-3">
                         <FormInput
                             placeholder="Max"
-                            label={<>Max <i className="fa fa-usd" aria-hidden="true"/></>}
+                            label={<>Max <i className="fa fa-usd" aria-hidden="true"/><i className="fa fa-usd" aria-hidden="true"/><i className="fa fa-usd" aria-hidden="true"/></>}
                             name="maxPrice"
                             value={filters.maxPrice === Infinity ? '' : filters.maxPrice}
                             onChange={onPriceChange}

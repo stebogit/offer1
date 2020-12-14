@@ -6,7 +6,7 @@ function FormSelect ({ options, value, label, defaultValue, name, onChange }) {
             {label && <label htmlFor={name}>{label}</label>}
             <select
                 id={name}
-                className="form-control form-control-sm form-control-a"
+                className="form-control form-control form-control-a"
                 name={name}
                 onChange={onChange}
                 value={value}

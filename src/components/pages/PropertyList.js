@@ -18,7 +18,7 @@ function PropertyList ({ properties, loading, error }) {
     useEffect(() => filterProprieties(), [filters, properties]);
 
     if (error) {
-        return <Header error title="Error" subtitle="Sorry, an error occurred, please try again later"/>;
+        return <Header hasError title="Error" subtitle="Sorry, an error occurred, please try again later"/>;
     }
 
     const handleChange = (e) => {
@@ -76,11 +76,21 @@ function PropertyList ({ properties, loading, error }) {
 
                         {loading
                             ? <Loader/>
-                            : filteredProperties.map((property, i) => <PropertyCard key={i} data={property}/>)}
+                            : filteredProperties.length
+                                ? filteredProperties.map((property, i) => <PropertyCard key={i} data={property}/>)
+                                : <NoMatch />}
                     </div>
                 </div>
             </section>
         </>
+    );
+}
+
+function NoMatch() {
+    return (
+        <div className="col-sm-12 text-center">
+            <em className="text-muted">No matching properties found.</em>
+        </div>
     );
 }
 

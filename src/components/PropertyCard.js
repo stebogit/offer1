@@ -19,8 +19,6 @@ function PropertyCard ({ data }) {
                             <div className="card-header-a">
                                 <h2 className="card-title-a">
                                     {property.address.addressLine1}
-                                    {property.address.addressLine2 &&
-                                    <><br/> {property.address.addressLine2}</>}
                                 </h2>
                             </div>
                             <div className="card-body-a">

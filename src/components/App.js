@@ -9,8 +9,7 @@ import Account from './pages/Account';
 import Signin from './pages/Signin';
 import Login from './pages/Login';
 import { ProvideAuth, PrivateRoute } from './Auth';
-
-import propertiesPayload from '../homes.json';
+import axios from 'axios';
 
 function App () {
     const [loading, setLoading] = useState(true);
@@ -18,11 +17,17 @@ function App () {
     const [properties, setProperties] = useState([]);
 
     useEffect(() => {
-        // TODO: get data from server
-        setTimeout(() => {
-            setProperties(propertiesPayload);
+        async function fetchProperties() {
+            try {
+                const { data } = await axios.get('/api/properties');
+                setProperties(data);
+            } catch (e) {
+                setError(true);
+            }
             setLoading(false);
-        }, 2000);
+        }
+
+        fetchProperties();
     }, []);
 
     const props = { properties, loading, error };
@@ -52,8 +57,8 @@ function App () {
 
                         <Route path="*">
                             <Header
-                                title="Not found" error
-                                subtitle="Sorry, we can't find the page you were looking for."
+                                title="Not found" hasError
+                                subtitle="Sorry, we can't find the page you are looking for."
                             />
                         </Route>
                     </Switch>

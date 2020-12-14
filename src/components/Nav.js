@@ -15,7 +15,7 @@ function Nav () {
                     <span/>
                     <span/>
                 </button>
-                <span className="navbar-brand text-brand">
+                <span className="navbar-brand text-brand" data-testid="logo">
                     O<span className="color-c">ffer</span><span className="color-b">1</span>
                 </span>
 

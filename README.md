@@ -1,11 +1,14 @@
 # Offer1 Interview Exercise
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) to give you a quick starting place for the exercise.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) to give you a
+ quick starting place for the exercise.
 
 
 ## Exercise Description
 
-Image that you have been hired to create a new Real Estate application to help consumers purchase a home. Your new company is up against the a tight timeline and needs to deliver a minimum viable product (mvp) ASAP! In order to compete in the market place your MVP should provide the following core functionality:
+Image that you have been hired to create a new Real Estate application to help consumers purchase a home. Your new
+ company is up against a tight timeline and needs to deliver a minimum viable product (MVP) ASAP! In order to
+ compete in the market place your MVP should provide the following core functionality:
 
 - View/browse all available homes 
 - Filter homes by City, Price, Number of Bedrooms
@@ -24,22 +27,28 @@ Create a detailed web app that solves for the following:
 
 - modularity/re-use of components
 - appropriate handling of flow/navigation
-- appropirate handling of data/state
+- appropriate handling of data/state
 - Look and feel of the application (after all this is a GUI)
 - quality (unit or functional tests are extra credit)
 
-A sample [data set](server/homes.json) representing properties has been included to help get you started on what an API call would likely return for the list of active properties. Due to limited timeframe for the assignment it is fine to mock out API calls, however, your application should still dispatch events as though it was making API calls to a service and handle/store data as though it was received from an API call.
+A sample [data set](homes.json) representing properties has been included to help get you started on what an API call
+ would likely return for the list of active properties. Due to limited timeframe for the assignment it is fine to
+ mock out API calls, however, your application should still dispatch events as though it was making API calls to a
+ service and handle/store data as though it was received from an API call.
 
-As each solution is reviewed there will be an emphasis on the use of ReactJS best practices, design patterns, use of standard packages, use of ES6.
+As each solution is reviewed there will be an emphasis on the use of ReactJS best practices, design patterns, use of
+ standard packages, use of ES6.
 
 
 ## Submitting the Exercise
 
 1. Ensure that the scripts below (npm start/test/build) are all working for your solution. They should all run successfully.
 
-2. Please make sure the repo is public. If you prefer to keep your repo private, then ensure you have granted read access to [tonyhernandez](https://github.com/tonyhernandez) and [mapayares](https://github.com/mapayares).
+2. Please make sure the repo is public. If you prefer to keep your repo private, then ensure you have granted read
+ access to [tonyhernandez](https://github.com/tonyhernandez) and [mapayares](https://github.com/mapayares).
 
-3. Completed the Google Form [here](https://forms.gle/We7VGi73apbECGKL6) once you are done with the code. Once submitted do not make any further changes to the code!
+3. Completed the Google Form [here](https://forms.gle/We7VGi73apbECGKL6) once you are done with the code. Once
+ submitted do not make any further changes to the code!
 
 
 ## Available Scripts
@@ -53,6 +62,15 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
+
+### `npm run serve`
+
+Starts the dev server, at [http://localhost:3001/api](http://localhost:3001/api), powering the following endpoints:
+ - **GET** `/api`: check status
+ - **GET** `/api/properties`: returning the `homes` data
+ - **POST** `/api/email`: process the email sent to the agent.
+
+The server will reload if you make edits.
 
 ### `npm run build`
 

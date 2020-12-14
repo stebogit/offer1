@@ -2,8 +2,10 @@ import PropTypes from 'prop-types';
 import { isMobile } from '../utils';
 import '../assets/share-buttons.css';
 
-// https://sharingbuttons.io/
-// (localhost seems to be an invalid url to share)
+/*
+ * See https://sharingbuttons.io/
+ * Note: localhost is an invalid url to share on Facebook
+ */
 
 function ShareButtons ({ text, pageUrl }) {
     return (
@@ -56,7 +58,7 @@ function ShareButtons ({ text, pageUrl }) {
 
             {/* E-Mail */}
             <a className="resp-sharing-button__link"
-               href={`mailto:?subject=${encodeURIComponent(text)}&body=${encodeURIComponent(pageUrl)}`}
+               href={`mailto:?subject=${encodeURIComponent(text)}&body=I%20found%20this%20beautiful%20home:%20${encodeURIComponent(pageUrl)}`}
                target="_self" rel="noopener noreferrer" aria-label="E-Mail">
                 <div className="resp-sharing-button resp-sharing-button--email resp-sharing-button--medium">
                     <div aria-hidden="true" className="resp-sharing-button__icon resp-sharing-button__icon--solid">
