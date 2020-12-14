@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useAuth } from './Auth';
 
 function Nav () {
     const [menuOpen, setMenuOpen] = useState(false);
-    const auth = useAuth();
 
     return (
         <nav className="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
@@ -31,9 +29,10 @@ function Nav () {
                         <li className="nav-item">
                             <NavLink
                                 className="nav-link" activeClassName="active"
-                                to={auth.user ? '/account' : '/login'}
+                                isActive={(_, location) => ['/account', '/login', '/signin'].includes(location.pathname)}
+                                to="/account"
                             >
-                                {auth.user ? 'Account' : 'Login'}
+                                Account
                             </NavLink>
                         </li>
                     </ul>

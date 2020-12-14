@@ -6,6 +6,7 @@ import Nav from './Nav';
 import Footer from './Footer';
 import Header from './Header';
 import Account from './pages/Account';
+import Signin from './pages/Signin';
 import Login from './pages/Login';
 import { ProvideAuth, PrivateRoute } from './Auth';
 
@@ -41,6 +42,9 @@ function App () {
 
                         <Route path="/login">
                             <Login/>
+                        </Route>
+                        <Route path="/signin">
+                            <Signin/>
                         </Route>
                         <PrivateRoute path="/account">
                             <Account/>

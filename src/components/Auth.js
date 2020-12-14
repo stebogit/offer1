@@ -29,28 +29,59 @@ export function PrivateRoute ({ children, ...rest }) {
 
 const fakeAuth = {
     isAuthenticated: false,
-    signin (cb) {
-        fakeAuth.isAuthenticated = true;
-        setTimeout(cb, 1000); // fake async
+    signin (data, cb, error) {
+        const exists = localStorage.getItem(data.email);
+        if (!exists) {
+            localStorage.setItem(data.email, JSON.stringify(data));
+            fakeAuth.isAuthenticated = true;
+            setTimeout(() => cb(data), 500);
+        } else {
+            setTimeout(() => error('User already exists, please chose a different email.'), 500); // fake async
+        }
     },
-    signout (cb) {
+    login (credentials, cb, error) {
+        const user = JSON.parse(localStorage.getItem(credentials.email));
+        if (user) {
+            fakeAuth.isAuthenticated = true;
+            setTimeout(() => cb(user), 500);
+        } else {
+            setTimeout(() => error('User not found, please sign in.'), 500);
+        }
+    },
+    logout (user, cb) {
         fakeAuth.isAuthenticated = false;
-        setTimeout(cb, 1000);
+        localStorage.removeItem(user.email);
+        setTimeout(cb, 500);
     }
 };
 
 export function useProvideAuth () {
     const [user, setUser] = useState(null);
 
-    const signin = cb => {
-        return fakeAuth.signin(() => {
-            setUser("user");
-            cb();
-        });
+    const signin = (data, cb, error) => {
+        return fakeAuth.signin(
+            data,
+            (user) => {
+                setUser(user);
+                cb();
+            },
+            error
+        );
     };
 
-    const signout = cb => {
-        return fakeAuth.signout(() => {
+    const login = (credentials, cb, error) => {
+        return fakeAuth.login(
+            credentials,
+            (user) => {
+                setUser(user);
+                cb();
+            },
+            error
+        );
+    };
+
+    const logout = cb => {
+        return fakeAuth.logout(user, () => {
             setUser(null);
             cb();
         });
@@ -59,6 +90,7 @@ export function useProvideAuth () {
     return {
         user,
         signin,
-        signout
+        login,
+        logout
     };
 }

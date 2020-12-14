@@ -64,3 +64,9 @@
 .share-icons {
     line-height: 1.15;
 }
+
+form .error-message {
+    color: #ed3c0d;
+    text-align: center;
+    padding: 15px;
+}

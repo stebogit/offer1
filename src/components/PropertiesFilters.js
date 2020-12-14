@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import PropertiesSelect from './PropertiesSelect';
-import PropertiesInput from './PropertiesInput';
+import FormSelect from './FormSelect';
+import FormInput from './FormInput';
 
 function PropertiesFilters ({ filters, bedroomOptions, cityOptions, onChange, onPriceChange, onReset }) {
     return (
@@ -8,7 +8,7 @@ function PropertiesFilters ({ filters, bedroomOptions, cityOptions, onChange, on
             <form className="form-a">
                 <div className="row">
                     <div className="col-md-3">
-                        <PropertiesSelect
+                        <FormSelect
                             options={cityOptions}
                             defaultValue={{ value: '', text: 'Any' }}
                             label={<>City <i className="fa fa-map-marker" aria-hidden="true"/></>}
@@ -18,7 +18,7 @@ function PropertiesFilters ({ filters, bedroomOptions, cityOptions, onChange, on
                         />
                     </div>
                     <div className="col-md-3">
-                        <PropertiesSelect
+                        <FormSelect
                             options={bedroomOptions}
                             defaultValue={{ value: '', text: 'Any' }}
                             label={<>Bedrooms <i className="fa fa-bed" aria-hidden="true"/></>}
@@ -28,21 +28,23 @@ function PropertiesFilters ({ filters, bedroomOptions, cityOptions, onChange, on
                         />
                     </div>
                     <div className="col-md-3">
-                        <PropertiesInput
+                        <FormInput
                             placeholder="0"
                             label={<>Min <i className="fa fa-usd" aria-hidden="true"/></>}
                             name="minPrice"
                             value={filters.minPrice}
                             onChange={onPriceChange}
+                            onKeyPress={numbersOnly}
                         />
                     </div>
                     <div className="col-md-3">
-                        <PropertiesInput
+                        <FormInput
                             placeholder="Max"
                             label={<>Max <i className="fa fa-usd" aria-hidden="true"/></>}
                             name="maxPrice"
                             value={filters.maxPrice === Infinity ? '' : filters.maxPrice}
                             onChange={onPriceChange}
+                            onKeyPress={numbersOnly}
                         />
                     </div>
                     <div className="col-md-12">
@@ -54,6 +56,13 @@ function PropertiesFilters ({ filters, bedroomOptions, cityOptions, onChange, on
             </form>
         </div>
     );
+}
+
+function numbersOnly (e) {
+    if (isNaN(e.key)) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
 }
 
 PropertiesFilters.propTypes = {
